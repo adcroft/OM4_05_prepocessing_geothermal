@@ -1,0 +1,19 @@
+stages:
+  - build
+
+before_script:
+  - git submodule init
+  - git submodule update
+  # For lack of access to anaconda from PAN
+  - . /home/Alistair.Adcroft/bin/anaconda3/bin/activate py3
+
+# Test
+build:
+  stage: build
+  tags:
+    - pan
+  script:
+    # Fetched some files from archive which are unobtainable through the firewall
+    - mkdir -p convert_Davies_2013
+    - cp -n /archive/gold/datasets/obs/convert_Davies_2013/ggge20271-sup-0003-Data_Table1_Eq_lon_lat_Global_HF.nc convert_Davies_2013/
+    - make
