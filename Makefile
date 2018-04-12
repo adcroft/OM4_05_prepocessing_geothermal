@@ -15,7 +15,7 @@ geothermal_davies2013_v1.nc: $(DATA_FILE) | $(GRID_FILE)
 $(GRID_FILE): | OM4_05_v2.tgz
 	tar zxf $| && touch $@
 OM4_05_v2.tgz:
-	wget -O $@ ftp://ftp.gfdl.noaa.gov/pub/aja/OM4_05_v2.tgz
+	wget -nv -O $@ ftp://ftp.gfdl.noaa.gov/pub/aja/OM4_05_v2.tgz
 
 # Fetch/create geothermal data file
 $(DATA_FILE): | convert_Davies_2013
