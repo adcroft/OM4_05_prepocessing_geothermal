@@ -4,8 +4,11 @@ stages:
 before_script:
   - git submodule init
   - git submodule update
-  # For lack of access to anaconda from PAN
-  - . /home/Alistair.Adcroft/bin/anaconda3/bin/activate py3
+  # Create python environment
+  - test -f Miniconda3-latest-Linux-x86_64.sh || wget http://anaconda.rdhpcs.noaa.gov/miniconda/Miniconda3-latest-Linux-x86_64.sh
+  - ./Miniconda3-latest-Linux-x86_64.sh -b -p `pwd`/local_env
+  - export PATH=`pwd`/local_env/bin:$PATH
+  - which python3
 
 # Test
 build:
@@ -13,6 +16,8 @@ build:
   tags:
     - pan
   script:
+    - conda create -n py3 python=3 numpy netcdf4
+    - . activate py3
     # Fetched some files from archive which are unobtainable through the firewall
     - mkdir -p convert_Davies_2013
     - cp -n /archive/gold/datasets/obs/convert_Davies_2013/ggge20271-sup-0003-Data_Table1_Eq_lon_lat_Global_HF.nc convert_Davies_2013/
