@@ -18,7 +18,4 @@ build:
   script:
     - conda create -q -y -n py3 python=3 numpy netcdf4
     - . activate py3
-    # Fetched some files from archive which are unobtainable through the firewall
-    - mkdir -p convert_Davies_2013
-    - cp -n /archive/gold/datasets/obs/convert_Davies_2013/ggge20271-sup-0003-Data_Table1_Eq_lon_lat_Global_HF.nc convert_Davies_2013/
     - make
