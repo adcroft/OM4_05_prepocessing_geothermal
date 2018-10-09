@@ -1,4 +1,5 @@
 [![Build Status](https://travis-ci.org/adcroft/OM4_05_preprocessing_geothermal.svg?branch=master)](https://travis-ci.org/adcroft/OM4_05_preprocessing_geothermal)
+[![DOI](https://zenodo.org/badge/95062779.svg)](https://zenodo.org/badge/latestdoi/95062779)
 
 ## What this repository is for
 
