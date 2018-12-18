@@ -5,17 +5,13 @@ MD5_FILE = check.md5
 
 all: check
 
-.SECONDARY: OM4_05_v2.tgz
-
 # Interpolate geothermal data to ocean model grid
 geothermal_davies2013_v1.nc: $(DATA_FILE) | $(GRID_FILE)
 	python regrid_geothermal.py
 
 # Fetch/create model grid file (super-grid)
-$(GRID_FILE): | OM4_05_v2.tgz
-	tar zxf $| && touch $@
-OM4_05_v2.tgz:
-	wget -nv -O $@ ftp://ftp.gfdl.noaa.gov/pub/aja/OM4_05_v2.tgz
+$(GRID_FILE):
+	wget -nv -O $@ ftp://ftp.gfdl.noaa.gov/perm/Alistair.Adcroft/MOM6-testing/OM4_05/$@
 
 # Fetch/create geothermal data file
 $(DATA_FILE): | convert_Davies_2013
